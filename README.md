@@ -10,11 +10,22 @@
 * Logs a successful connection message.
 
 ### Request:
+```json
 POST /signup
 {
   "email": "user@example.com",
   "password": "secretpassword"
 }
+```
+
+```json
+Expected JSON Response (Success):
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY4ZDUzMmE2YTZkOTRlMDA3ZmEzZGMiLCJpYXQiOjE2MzQyOTY2ODcsImV4cCI6MTYzNDMwMzA4N30.5SthfAUfaGtUCQ9oNLdSZs6yESRpjrW7bdM-vtVZ0qU"
+}
+
+```
+
 
 ### 2. User Registration
 - Endpoint: POST /signup
