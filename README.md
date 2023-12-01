@@ -2,7 +2,7 @@
 
 ## Documentation for Backend
 
-### 1. Connection to MongoDB
+## 1. Connection to MongoDB
 * Endpoint: Not applicable (runs when the server starts).
 * Purpose: Establish a connection to the MongoDB database.
 * Operations:
@@ -12,7 +12,7 @@
 
 
 
-### 2. User Registration
+## 2. User Registration
 - Endpoint: POST /signup
 - Purpose: Allow users to register by providing email and password.
 - Operations:
@@ -50,7 +50,7 @@
 ```
 
 
-### 3. User Login
+## 3. User Login
 - Endpoint: POST /login
 - Purpose: Allow users to log in by providing their email and password.
 - Operations:
@@ -95,7 +95,7 @@
 
 
 
-### 4. User Logout
+## 4. User Logout
 - Endpoint: POST /logout
 - Purpose: Allow users to log out, destroying the session.
 - Operations:
@@ -119,12 +119,36 @@ Method: POST
 }
 ```
 
-### 5. Check User Existence
+## 5. Check User Existence
 - Endpoint: POST /checkuser
 - Purpose: Check if a user with a given email already exists.
 - Operations:
 - Checks if a user with the provided email exists in the database.
 - Responds with whether the user exists.
+
+### Request
+POST /checkuser
+Content-Type: application/json
+```json
+
+
+{
+  "email": "user@example.com"
+}
+```
+
+### Response
+
+```json
+{
+  "exists": true
+}
+
+```
+
+
+
+
 ### 6. Create Post
 - Endpoint: POST /posts
 - Purpose: Allow authenticated users to create posts.
@@ -161,7 +185,7 @@ Method: POST
 }
 ```
 
-### 7. Get All Posts
+## 7. Get All Posts
 - Endpoint: GET /posts
 - Purpose: Retrieve all posts from the database, including user information, comments, and likes.
 - Operations:
@@ -197,14 +221,14 @@ Method: GET
     ],
     "likes": 5
   },
-  // Additional posts...
+
 ]
 
 ```
 
 
 
-### 8. Get Posts for a User
+## 8. Get Posts for a User
 - Endpoint: GET /postsforuser
 - Purpose: Retrieve posts associated with a specific user.
 - Operations:
@@ -213,7 +237,7 @@ Method: GET
 - Populates user information for each post.
 - Populates user information for each comment in the posts.
 - Responds with the retrieved posts.
-### 9. Add Comment to a Post
+## 9. Add Comment to a Post
 - Endpoint: POST /comments
 - Purpose: Allow authenticated users to add comments to a post.
 - Operations:
@@ -221,7 +245,28 @@ Method: GET
 - Finds the post based on the provided post ID.
 - Adds the new comment to the post.
 - Responds with a success message.
-### 10. Get User Profile
+
+
+### Request
+POST /comments
+Content-Type: application/json
+```json
+{
+  "postId": "60a12f5b734a87427c8b5c04",
+  "newComment": "Great post!"
+}
+```
+
+### Response
+
+{
+  "message": "Comment added successfully"
+}
+
+
+
+
+## 10. Get User Profile
 - Endpoint: GET /profile
 - Purpose: Retrieve the profile information of an authenticated user.
 - Operations:
@@ -249,7 +294,7 @@ Method: GET
 ```
 
 
-### 11. Update User Profile
+## 11. Update User Profile
 - Endpoint: PUT /profile/update
 - Purpose: Allow authenticated users to update their profile details.
 - Operations:
@@ -258,15 +303,41 @@ Method: GET
 - Compares the provided old password with the hashed password stored in the database using bcrypt.
 - Updates the user's email and/or password.
 - Responds with the updated user profile.
-### 12. Password Security
+
+
+### Request:
+PUT /profile/update
+Content-Type: application/json
+```json
+
+{
+  "email": "newemail@example.com",
+  "newPassword": "newPassword123",
+  "oldPassword": "oldPassword123"
+}
+
+```
+
+### Response
+
+```json
+
+{
+  "username": "exampleUser",
+  "email": "newemail@example.com"
+}
+
+```
+
+## 12. Password Security
 - User passwords are securely stored in the database using bcrypt.
 - Bcrypt is a one-way hashing algorithm that adds a salt to each password before hashing, making it highly resistant to rainbow table attacks.
-### 13. CRUD Operations
+## 13. CRUD Operations
 - Create: POST /signup, POST /posts, POST /comments
 - Read: POST /login, GET /posts, GET /postsforuser, GET /profile
 - Update: PUT /profile/update
 - Delete: Not applicable (consider adding if needed)
-### 14. Error Handling
+## 14. Error Handling
 - The server provides comprehensive error handling for various scenarios.
 - Each API endpoint checks for errors such as invalid input, unauthorized access, and database errors.
 - Errors are logged for debugging purposes.
