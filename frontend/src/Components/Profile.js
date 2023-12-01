@@ -5,6 +5,30 @@ const Profile = () => {
   const [updateData, setUpdateData] = useState({}); // Updated data state
   const [isUpdateMode, setIsUpdateMode] = useState(false); // Update mode state
 
+  const [posts, setPosts] = useState([]);
+
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/postsforuser');
+      const data = await response.json();
+
+      if (response.ok) {
+        setPosts(data);
+      } else {
+        console.error('Error fetching posts:', data.error);
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error.message);
+    }
+  };
+
+
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -99,6 +123,39 @@ const Profile = () => {
       ) : (
         <button onClick={handleUpdateClick}>Update Details</button>
       )}
+
+<div className="posts">
+    <h1>My Posts</h1>
+        {posts.map((post, index) => (
+          <div key={post._id} className="post">
+            <p>User ID: {post.userId}</p>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+
+            <div>
+              <p>Comments:</p>
+              <ul>
+                {post.comments.map((comment, commentIndex) => (
+                  <li key={commentIndex}>
+                    <span>User ID: {comment.u}</span>
+                    <p>{comment.c}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <p>Likes: {post.likes}</p>
+
+         
+
+
+            {index !== posts.length - 1 && <hr />}
+          </div>
+        ))}
+      </div>
+
+
+      
     </div>
   );
 };

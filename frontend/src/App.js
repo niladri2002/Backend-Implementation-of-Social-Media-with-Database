@@ -18,6 +18,10 @@ const App = () => {
     setLoggedIn(true);
   };
 
+  const handleLogout=()=>{
+    setLoggedIn(false);
+  }
+
   return (
     <Router>
       <Routes>
@@ -25,7 +29,7 @@ const App = () => {
         <Route path="/" element={<Signup onSignup={handleSignup} />} />
         <Route
           path="/home"
-          element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
+          element={isLoggedIn ? <Home onLogout={handleLogout} /> : <Navigate to="/login" />}
         />
          <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/add-post" element={isLoggedIn ? <AddPost /> : <Navigate to="/login" />} />

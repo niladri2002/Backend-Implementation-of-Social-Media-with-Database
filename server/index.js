@@ -100,6 +100,22 @@ app.post('/login',  async (req, res) => {
     }
   });
 
+
+
+
+app.post('/logout', (req, res) => {
+ u=''
+  req.session.destroy((err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Error during logout' });
+    }
+
+    res.status(200).json({ message: 'Logout successful' });
+  });
+});
+
+
   app.post('/checkuser', async (req, res) => {
     
   
@@ -162,6 +178,27 @@ app.get('/posts', async (req, res) => {
 });
 
 
+
+app.get('/postsforuser', async (req, res) => {
+  try {
+    const userId = u;
+
+    // Retrieve posts from the database for the specified user ID
+    const posts = await Post.find({ 'userId': userId })
+      .populate('userId', 'username')
+      .populate({
+        path: 'comments.userId',
+        select: 'username',
+      });
+
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error retrieving posts' });
+  }
+});
+
+
 app.post('/comments',  async (req, res) => {
   const userId = u;
 
@@ -183,18 +220,15 @@ app.post('/comments',  async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-   
-    // const user = await User.findById({u});
-
-    // if (!user) {
-    //   return res.status(404).json({ error: 'User not found' });
-    // }
 const c=formdata.newComment
+if(c!='')
+{
     post.comments.push({u, c});
    const result= await post.save();
    console.log(result)
 
     res.status(201).json({ message: 'Comment added successfully' });
+}
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error adding comment' });

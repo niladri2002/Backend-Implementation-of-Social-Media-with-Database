@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const AddPost = () => {
   const [title, setTitle] = useState('');
@@ -19,9 +20,12 @@ const AddPost = () => {
       const data = await response.json();
 
       if (response.ok) {
-        console.log('Post added successfully:', data.message);
+        alert('Post added successfully:', data.message);
+        setTitle('')
+        setContent('')
         // Redirect to the home page or perform any other actions after successful post creation
       } else {
+        alert(data.error)
         console.error('Error adding post:', data.error);
       }
     } catch (error) {
