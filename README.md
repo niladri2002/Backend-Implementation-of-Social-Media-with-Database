@@ -2,6 +2,22 @@
 
 ## Documentation for Backend
 
+
+### Introduction
+This documentation provides an overview of the backend functionality for the NodeJs application. The backend is designed to handle user authentication, post creation, retrieval, commenting, and user profile management. MongoDB is used for data storage, and the application exposes RESTful APIs to interact with the frontend.
+
+### Authentication and Session Management
+The backend employs user authentication using JWT (JSON Web Tokens) and session management for user sessions. When a user logs in, a JWT is generated and stored in the session. This token is used to authenticate subsequent requests, ensuring secure access to user-specific resources.
+
+### MongoDB Integration
+MongoDB serves as the primary database for the application. It is used to store user information, posts, and comments. The integration allows for efficient retrieval and manipulation of data.
+
+### CRUD Operations
+The backend supports CRUD operations for user profiles, posts, and comments. This includes creating new user accounts, logging in, creating posts, retrieving posts, adding comments, updating user profiles, and checking the existence of a user.
+
+
+# API's Documentation
+
 ## 1. Connection to MongoDB
 * Endpoint: Not applicable (runs when the server starts).
 * Purpose: Establish a connection to the MongoDB database.
