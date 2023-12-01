@@ -35,7 +35,7 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div className="container">
+    <div className="containe">
       <h2>Login</h2>
       <label>Email:</label>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

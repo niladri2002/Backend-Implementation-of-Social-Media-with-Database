@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Navigate ,useNavigate} from 'react-router-dom';
+import "./home.css"
 
 const Home = ({onLogout}) => {
   const [newComment, setNewComment] = useState('');
@@ -32,12 +33,12 @@ const Home = ({onLogout}) => {
 
   const handleCommentSubmit = async (postId) => {
     try {
-      const response = await fetch(`http://localhost:5000/posts/${postId}/comments`, {
+      const response = await fetch(`http://localhost:5000/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ comment: newComment }),
+        body: JSON.stringify({ postId,newComment }),
       });
 
       const data = await response.json();
@@ -121,9 +122,10 @@ const Home = ({onLogout}) => {
       </div>
 
       <div className="sidebar">
-        <Link to="#" onClick={handleLogout}>Logout</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/add-post">Add Post</Link>
+       
+        <Link to="/profile"><h1>Profile</h1></Link>
+        <Link to="/add-post"><h1>Add Post</h1></Link>
+        <Link to="#" onClick={handleLogout}><h1>Logout</h1></Link>
       </div>
     </div>
   );

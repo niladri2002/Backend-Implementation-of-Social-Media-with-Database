@@ -37,7 +37,8 @@ const Signup = ({ onSignup }) => {
       if (signupResponse.ok) {
         sessionStorage.setItem('token', signupData.token);
         onSignup();
-        navigate('/home');
+        alert("Successfully signed up")
+        navigate('/login');
       } else {
         alert(signupData.error || 'Signup failed');
       }
@@ -48,7 +49,7 @@ const Signup = ({ onSignup }) => {
   };
 
   return (
-    <div className="container">
+    <div className="containe">
       <h2>Signup</h2>
       <label>Email:</label>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

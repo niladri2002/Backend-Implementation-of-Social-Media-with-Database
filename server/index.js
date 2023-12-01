@@ -63,7 +63,7 @@ app.post('/signup', async (req, res) => {
         email : formData.email,
         password: hashedPassword,
       });
-      const token = jwt.sign({ userId: user._id }, 'hjbhb', { expiresIn: '1h' });
+    token=1
     result=  await newUser.save();
     console.log('User saved to the database:', result);
     res.status(201).json({ token});

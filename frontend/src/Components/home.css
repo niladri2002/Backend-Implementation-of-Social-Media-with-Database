@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.posts{
+    width: 80%;
+    padding-left: 30%;
+}
+
+.sidebar{
+    width: 20%;
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+}
+.first{
+    display: flex;
+    flex-direction: column;
+}

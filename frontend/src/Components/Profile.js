@@ -89,7 +89,8 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className='contain'>
+        <div className='first'>
       <h2>Profile</h2>
       <p>User ID: {userData.username}</p>
       <p>Email: {userData.email}</p>
@@ -123,7 +124,7 @@ const Profile = () => {
       ) : (
         <button onClick={handleUpdateClick}>Update Details</button>
       )}
-
+</div>
 <div className="posts">
     <h1>My Posts</h1>
         {posts.map((post, index) => (
