@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import  Profile  from "./Components/Profile";
+import  AddPost  from "./Components/AddPost";
 
 const App = () => {
   const [isLoggedIn, setLoggedIn] = React.useState(false);
@@ -25,6 +27,8 @@ const App = () => {
           path="/home"
           element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
         />
+         <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/add-post" element={isLoggedIn ? <AddPost /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );

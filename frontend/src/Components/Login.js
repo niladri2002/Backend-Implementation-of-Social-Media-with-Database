@@ -21,6 +21,7 @@ const Login = ({ onLogin }) => {
       const data = await response.json();
 
       if (response.ok) {
+        console.log(data.token)
         sessionStorage.setItem('token', data.token);
         onLogin();
         navigate('/home');
