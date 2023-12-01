@@ -103,7 +103,21 @@
 - Destroys the session.
 - Responds with a successful logout message.
 
+### Request:
 
+Endpoint: /logout
+
+Method: POST
+
+### Response:
+
+```json
+{
+  
+  "message": "Logout successful"
+
+}
+```
 
 ### 5. Check User Existence
 - Endpoint: POST /checkuser
@@ -155,6 +169,41 @@
 - Populates user information for each post.
 - Populates user information for each comment in the posts.
 - Responds with the retrieved posts.
+
+### Request:
+
+Endpoint: /posts
+
+Method: GET
+
+### Response:
+
+```json
+[
+  {
+    "_id": "60a12f5b734a87427c8b5c04",
+    "userId": "exampleUserId",
+    "title": "Sample Post",
+    "content": "This is the content of the post.",
+    "comments": [
+      {
+        "userId": "commenterId1",
+        "comment": "Great post!"
+      },
+      {
+        "userId": "commenterId2",
+        "comment": "I enjoyed reading this."
+      }
+    ],
+    "likes": 5
+  },
+  // Additional posts...
+]
+
+```
+
+
+
 ### 8. Get Posts for a User
 - Endpoint: GET /postsforuser
 - Purpose: Retrieve posts associated with a specific user.
@@ -179,6 +228,27 @@
 - Validates if a user is authenticated by checking the session.
 - Retrieves user information from the database.
 - Responds with the retrieved user profile.
+
+
+
+### Request:
+
+Endpoint: /profile
+
+Method: GET
+
+### Response:
+
+```json
+{
+  
+  "username": "exampleUser",
+  "email": "user@example.com"
+
+}
+```
+
+
 ### 11. Update User Profile
 - Endpoint: PUT /profile/update
 - Purpose: Allow authenticated users to update their profile details.
