@@ -9,22 +9,7 @@
 * Connects to the MongoDB database specified in the connection string.
 * Logs a successful connection message.
 
-### Request:
-```json
-POST /signup
-{
-  "email": "user@example.com",
-  "password": "secretpassword"
-}
-```
 
-```json
-Expected JSON Response (Success):
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY4ZDUzMmE2YTZkOTRlMDA3ZmEzZGMiLCJpYXQiOjE2MzQyOTY2ODcsImV4cCI6MTYzNDMwMzA4N30.5SthfAUfaGtUCQ9oNLdSZs6yESRpjrW7bdM-vtVZ0qU"
-}
-
-```
 
 
 ### 2. User Registration
@@ -35,6 +20,36 @@ Expected JSON Response (Success):
 - Saves the user's email and hashed password to the database.
 - Generates a JSON Web Token (JWT) containing the user ID for authentication.
 - Responds with the generated JWT.
+
+### Request:
+* POST /signup
+```json
+
+{
+  "email": "user@example.com",
+  "password": "secretpassword"
+}
+```
+* Expected JSON Response (Success):
+```json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY4ZDUzMmE2YTZkOTRlMDA3ZmEzZGMiLCJpYXQiOjE2MzQyOTY2ODcsImV4cCI6MTYzNDMwMzA4N30.5SthfAUfaGtUCQ9oNLdSZs6yESRpjrW7bdM-vtVZ0qU"
+}
+
+```
+
+* Expected JSON Response (Error - Email Already Exists):
+
+ ```json
+
+{
+  "error": "User with this email already exists."
+}
+
+```
+
+
 ### 3. User Login
 - Endpoint: POST /login
 - Purpose: Allow users to log in by providing their email and password.
@@ -44,6 +59,42 @@ Expected JSON Response (Success):
 - If successful, generates a new JWT containing the user ID for authentication.
 - Stores the user ID in the session.
 - Responds with the generated JWT.
+
+### Request
+* POST /login
+```json
+
+
+{
+  "email": "user@example.com",
+  "password": "secretpassword"
+}
+
+
+```
+
+* Expected JSON Response (Success):
+
+
+```json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTY4ZDUzMmE2YTZkOTRlMDA3ZmEzZGMiLCJpYXQiOjE2MzQyOTY2ODcsImV4cCI6MTYzNDMwMzA4N30.5SthfAUfaGtUCQ9oNLdSZs6yESRpjrW7bdM-vtVZ0qU"
+}
+
+```
+
+* Expected JSON Response (Error - Invalid Credentials):
+```json
+{
+  "error": "Invalid email or password."
+}
+```
+
+
+
+
+
 ### 4. User Logout
 - Endpoint: POST /logout
 - Purpose: Allow users to log out, destroying the session.
@@ -51,6 +102,9 @@ Expected JSON Response (Success):
 - Clears the user ID stored in the session.
 - Destroys the session.
 - Responds with a successful logout message.
+
+
+
 ### 5. Check User Existence
 - Endpoint: POST /checkuser
 - Purpose: Check if a user with a given email already exists.
@@ -65,6 +119,34 @@ Expected JSON Response (Success):
 - Creates a new post with the provided title and content.
 - Associates the post with the authenticated user.
 - Responds with a success message.
+
+
+### Request:
+
+
+* POST /posts
+```json
+{
+  "title": "New Post",
+  "content": "This is the content of the new post."
+}
+```
+* Expected JSON Response (Success):
+
+```json
+{
+  "message": "Post created successfully"
+}
+
+```
+
+* Expected JSON Response (Error - Unauthorized):
+```json
+{
+  "error": "Unauthorized. Please log in."
+}
+```
+
 ### 7. Get All Posts
 - Endpoint: GET /posts
 - Purpose: Retrieve all posts from the database, including user information, comments, and likes.
