@@ -342,3 +342,40 @@ Content-Type: application/json
 - Each API endpoint checks for errors such as invalid input, unauthorized access, and database errors.
 - Errors are logged for debugging purposes.
 - Error messages are returned to the client for informative responses.
+
+
+
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- Node.js: [Download Node.js](https://nodejs.org/)
+- npm (Node Package Manager): It comes bundled with Node.js.
+
+
+
+### Installation
+
+1. Clone the repository and move to the folder reelo_assignment:
+
+```bash
+git clone https://github.com/niladri2002/NodeJs-Assignment.git
+cd NodeJs-Assignment
+```
+
+2. Move to the frontend repository , then npm install and then npm start to start the frontend on localhost:3000:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+3. Move to the server repository ,then npm install and then nodemon server to start the backend server on localhost:5000 and mongodb on localhost:27017:
+
+```bash
+cd server
+npm install
+nodemon index
+```
